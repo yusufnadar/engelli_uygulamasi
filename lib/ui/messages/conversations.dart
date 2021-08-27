@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:engelli_uygulama/ui/message.dart';
+import 'package:engelli_uygulama/config/color.dart';
+import 'package:engelli_uygulama/ui/messages/message.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -17,16 +18,10 @@ class _MessagePageState extends State<MessagePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xfff5f0e1),
         title: Text(
-          'Messages',
-          style: TextStyle(color: Color(0xff1e3d59)),
+          'Konuşmalar',
+          style: TextStyle(color: Colors.black),
         ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.search, color: Color(0xff1e3d59)),
-              onPressed: () {}),
-        ],
       ),
       body: ListView.builder(
         itemCount: 10,
@@ -34,7 +29,8 @@ class _MessagePageState extends State<MessagePage> {
           children: [
             Container(
               width: Get.width,
-              margin: EdgeInsets.symmetric(vertical: Get.height * 0.01,horizontal: Get.width*0.02),
+              margin: EdgeInsets.symmetric(
+                  vertical: Get.height * 0.01, horizontal: Get.width * 0.02),
               child: Row(
                 children: [
                   CircleAvatar(
@@ -45,12 +41,30 @@ class _MessagePageState extends State<MessagePage> {
                   ),
                   Expanded(
                     child: ListTile(
-                      onTap: (){
-                        Get.to(()=> Message());
+                      onTap: () {
+                        Get.to(() => Message());
                       },
-                      title: Text('Sümeyye',style: TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: Container(margin: EdgeInsets.only(top: 7),child: Text('Selammm',style: TextStyle(fontSize: 13,color: Colors.black54),)),
-                      trailing: Text('3dk önce',style: TextStyle(fontSize: 12,color: Colors.grey.shade400),),
+                      title: Text(
+                        'Sümeyye',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Container(
+                        margin: EdgeInsets.only(top: 7),
+                        child: Text(
+                          'Selammm',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: grimsi
+                          ),
+                        ),
+                      ),
+                      trailing: Text(
+                        '3dk önce',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: grimsi
+                        ),
+                      ),
                     ),
                   ),
                 ],

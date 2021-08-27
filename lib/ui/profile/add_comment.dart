@@ -15,7 +15,7 @@ class _AddCommentState extends State<AddComment> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lacivert,
-        title: Text('Edit Comments'),
+        title: Text('Yorum Ekle'),
       ),
       body: Container(
         padding: EdgeInsets.all(12),
@@ -24,7 +24,7 @@ class _AddCommentState extends State<AddComment> {
             TextFormField(
               maxLines: 5,
               decoration: InputDecoration(
-                hintText: 'Type a comment',
+                hintText: 'Yorum Yazınız',
                 hintStyle: TextStyle(fontSize: 13, color: Color(0xff1e3d59)),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(6),

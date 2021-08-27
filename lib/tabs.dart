@@ -1,13 +1,14 @@
 import 'package:engelli_uygulama/config/color.dart';
 import 'package:engelli_uygulama/config/tabs/bottom_navigation_bar_item.dart';
-import 'package:engelli_uygulama/ui/home_page.dart';
-import 'package:engelli_uygulama/ui/message_page.dart';
-import 'package:engelli_uygulama/ui/profile_page.dart';
+import 'package:engelli_uygulama/ui/events/add_event.dart';
+import 'package:engelli_uygulama/ui/home_page/home_page.dart';
+import 'package:engelli_uygulama/ui/messages/conversations.dart';
+import 'package:engelli_uygulama/ui/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-enum TabItem { HomePage, MessagePage ,ProfilPage }
+enum TabItem { HomePage,AddEvent, MessagePage, ProfilPage }
 
 class Tabs extends StatefulWidget {
   final int currentTab1;
@@ -28,15 +29,17 @@ class _TabsState extends State<Tabs>
 
   Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
     TabItem.HomePage: GlobalKey<NavigatorState>(),
+    TabItem.AddEvent: GlobalKey<NavigatorState>(),
     TabItem.ProfilPage: GlobalKey<NavigatorState>(),
     TabItem.MessagePage: GlobalKey<NavigatorState>(),
   };
 
   Map<TabItem, Widget> tumSayfalar(context) {
     return {
-    TabItem.HomePage: HomePage(),
-    TabItem.ProfilPage: ProfilePage(),
-    TabItem.MessagePage: MessagePage(),
+      TabItem.HomePage: HomePage(),
+      TabItem.AddEvent: AddEvent(),
+      TabItem.ProfilPage: ProfilePage(),
+      TabItem.MessagePage: MessagePage(),
     };
   }
 
@@ -64,17 +67,32 @@ class _TabsState extends State<Tabs>
           currentIndex: widget.currentTab1,
           items: [
             BottomNavigationBarItem(
-              icon: FaIcon
-                (FontAwesomeIcons.home,size: 20,color: currentIndex == 0 ? lacivert : Colors.grey,),
+              icon: FaIcon(
+                FontAwesomeIcons.home,
+                size: 20,
+                color: currentIndex == 0 ? lacivert : Colors.grey,
+              ),
             ),
             BottomNavigationBarItem(
-              icon: Icon
-                (Icons.messenger,size: 20,color: currentIndex == 1 ? lacivert : Colors.grey,),
+              icon: FaIcon(
+                FontAwesomeIcons.ad,
+                size: 20,
+                color: currentIndex == 1 ? lacivert : Colors.grey,
+              ),
             ),
             BottomNavigationBarItem(
-              icon: FaIcon
-                (FontAwesomeIcons.solidUser,size: 20,color: currentIndex == 2 ? lacivert : Colors.grey,),
-
+              icon: Icon(
+                Icons.messenger,
+                size: 20,
+                color: currentIndex == 2 ? lacivert : Colors.grey,
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.solidUser,
+                size: 20,
+                color: currentIndex == 3 ? lacivert : Colors.grey,
+              ),
             ),
           ],
           onTap: (index) {

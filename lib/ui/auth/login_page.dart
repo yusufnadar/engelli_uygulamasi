@@ -1,3 +1,4 @@
+import 'package:engelli_uygulama/config/color.dart';
 import 'package:engelli_uygulama/config/widgets/close_keyboard.dart';
 import 'package:engelli_uygulama/config/widgets/my_padding.dart';
 import 'package:engelli_uygulama/config/widgets/style.dart';
@@ -5,6 +6,7 @@ import 'package:engelli_uygulama/config/widgets/text_form_field.dart';
 import 'package:engelli_uygulama/tabs.dart';
 import 'package:engelli_uygulama/ui/auth/sign_up.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -37,11 +39,11 @@ class _LoginPageState extends State<LoginPage> {
                       height: Get.height * 0.08,
                     ),
                     Text(
-                      'Login',
+                      'Giriş Yap',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
                     ),
-                    userNamePart(),
+                    emailPart(),
                     passwordPart(),
                     forgotPasswordPart(),
                     SizedBox(
@@ -51,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: Get.height * 0.07,
                     ),
-                    Text('Or Sign Up Using'),
+                    Text('Ya da'),
                     SizedBox(
                       height: Get.height * 0.03,
                     ),
@@ -79,20 +81,31 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     SizedBox(
-                      height: Get.height * 0.25,
+                      height: Get.height * 0.27,
                     ),
-                    Text('Or Sign Up Using'),
-                    SizedBox(
-                      height: Get.height * 0.02,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Get.off(()=> SignUp(),opaque: false);
-                      },
-                      child: Text(
-                        'SIGN UP',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "Hesabınız Yok Mu?",
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ' Kaydol!',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.off(()=> SignUp(),opaque: false);
+                              },
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -115,30 +128,29 @@ class _LoginPageState extends State<LoginPage> {
         width: Get.width,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          gradient: LinearGradient(
-            colors: <Color>[
-              Color(0xFF6dcbdf),
-              Color(0xFFa982eb),
-              Color(0xFFade46f4),
-            ],
-          ),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: kirmizi,
         ),
         child: Text(
-          'LOGIN',
+          'Giriş Yap',
           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
         ),
       ),
     );
   }
 
-  Container forgotPasswordPart() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: Get.height*0.018),
-      alignment: Alignment.centerRight,
-      child: Text(
-        'Forgot Password?',
-        style: TextStyle(fontSize: 12),
+  Widget forgotPasswordPart() {
+    return GestureDetector(
+      onTap: (){
+        //Get.to(()=> ForgotPassword());
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: Get.height*0.018),
+        alignment: Alignment.centerRight,
+        child: Text(
+          'Şifremi Unuttum',
+          style: TextStyle(fontSize: 12),
+        ),
       ),
     );
   }
@@ -149,13 +161,13 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         SizedBox(height: Get.size.height * 0.03),
         Text(
-          'Password',
+          'Şifre',
           style: loginStyle,
         ),
         MyTextForm(
-          hintText: 'Type your password',
-          onSaved: (kullanicininGirdigiDeger) {
-            password = kullanicininGirdigiDeger;
+          hintText: 'Şifre',
+          onSaved: (value) {
+            password = value;
           },
           icon: Icons.lock,
         ),
@@ -163,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  userNamePart() {
+  emailPart() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -171,13 +183,13 @@ class _LoginPageState extends State<LoginPage> {
           height: Get.height * 0.05,
         ),
         Text(
-          'Username',
+          'Email',
           style: loginStyle,
         ),
         MyTextForm(
-          hintText: 'Type your username',
-          onSaved: (kullanicininGirdigiDeger) {
-            email = kullanicininGirdigiDeger;
+          hintText: 'Email',
+          onSaved: (value) {
+            email = value;
           },
           icon: FontAwesomeIcons.user,
         ),

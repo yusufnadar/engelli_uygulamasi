@@ -1,5 +1,6 @@
-import 'package:engelli_uygulama/ui/add_event.dart';
-import 'package:engelli_uygulama/ui/event_detail.dart';
+import 'package:engelli_uygulama/config/color.dart';
+import 'package:engelli_uygulama/ui/events/add_event.dart';
+import 'package:engelli_uygulama/ui/events/event_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var liste = <String>['a', 'b', 'c', 'd'];
 
   var liste1 = ['assets/a1.jpg', 'assets/a2.jpg', 'assets/a3.jpg'];
 
@@ -22,9 +22,14 @@ class _HomePageState extends State<HomePage> {
     'EFK 4.Konferansı'
   ];
 
+  var tempList = [
+    {'title':'aa','id':1},
+    {'title':'bb','id':2},
+  ];
+
   var yazi =
       'Paragraf, herhangi bir yazının bir satır başından öteki satır başına kadar olan bölümüne denir. Daha geniş bir ifadeyle, paragraf "bir duyguyu, bir düşünceyi, bir isteği, bir durumu, bir öneriyi, olayın bir yönünü, yalnızca bir yönüyle anlatım tekniklerin­den ve düşünceyi geliştirme yollarından yararlanarak anlatan yazı türüdür. Kelimeler cümleleri, cümleler paragrafları, paragraflar da yazıları oluşturur. Paragraf bir yazının küçültülmüş bir örneğidir. Bu yönüyle yapı bakımından bir yazıya benzer.';
-
+  int id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +37,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
         actions: [
-          IconButton(icon: FaIcon(FontAwesomeIcons.plusSquare), onPressed: (){
-            Get.to(()=>AddEvent());
-          },)
+          Container(
+            alignment: Alignment.centerRight,
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(iconEnabledColor: Colors.white,hint: Text('Seçim yapınız',style: TextStyle(color: koyuMavi),),items: tempList.map((e) => DropdownMenuItem(child: SizedBox(width: 100.0,child: Text(e['title'],textAlign: TextAlign.right)),value: e['id'])).toList(),value: id,onChanged: (value){
+                setState(() {
+                  id = value;
+                });
+              },),
+            ),
+          ),
         ],
         title: Text(
           'Etkinlikler',
@@ -64,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                       child: IconButton(
                         icon: FaIcon(
                           FontAwesomeIcons.handPeace,
-                          color: Color(0xff1e3d59),
+                          color: turkuaz,
                         ),
                         onPressed: () {},
                       ),
@@ -76,14 +87,14 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Social'),
+                        Text('Social',style: TextStyle(fontWeight: FontWeight.bold),),
                         SizedBox(
                           height: Get.height * 0.008,
                         ),
                         Text(
                           '22 events',
                           style:
-                          TextStyle(fontSize: 12, color: Color(0xff1e3d59),),
+                          TextStyle(fontSize: 12, color: turkuaz,),
                         )
                       ],
                     ),
@@ -97,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               shrinkWrap: true,
               itemCount: liste1.length,
               itemBuilder: (context, index) => Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: EdgeInsets.only(bottom: Get.height*0.015),
                 padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,8 +119,8 @@ class _HomePageState extends State<HomePage> {
                         tag: index,
                         child: Image.asset(
                           liste1[index],
-                          width: 360,
-                          height: 360,
+                          width: Get.width,
+                          height: Get.height*0.4,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -126,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               '27 ŞUB, 2020',
                               style: TextStyle(
-                                  color: Color(0xffffc13b),
+                                  color: textColor,
                                   fontWeight: FontWeight.bold),
                             ),
                             Padding(
@@ -140,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               'ORTAHİSAR, TRABZON',
                               style: TextStyle(
-                                  color: Colors.grey.shade500, fontSize: 12),
+                                  color: textColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -155,10 +166,10 @@ class _HomePageState extends State<HomePage> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(30 )),
-                              color: Color(0xffffc13b),
+                              color: kirmizi,
                             ),
                             child: Text(
-                              'Interested',
+                              'Detaylar',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),

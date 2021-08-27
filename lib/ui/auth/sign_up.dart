@@ -1,9 +1,11 @@
+import 'package:engelli_uygulama/config/color.dart';
 import 'package:engelli_uygulama/config/widgets/close_keyboard.dart';
 import 'package:engelli_uygulama/config/widgets/my_padding.dart';
 import 'package:engelli_uygulama/config/widgets/style.dart';
 import 'package:engelli_uygulama/config/widgets/text_form_field.dart';
 import 'package:engelli_uygulama/tabs.dart';
 import 'package:engelli_uygulama/ui/auth/login_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -37,22 +39,26 @@ class _SignUpState extends State<SignUp> {
                       height: Get.height * 0.08,
                     ),
                     Text(
-                      'SIGN UP',
+                      'ÜYE OL',
                       style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
                     ),
                     emailPart(),
-                    userNamePart(),
+                    //userNamePart(),
                     passwordPart(),
+                    passwordPartAgain(),
+                    SizedBox(
+                      height: Get.height * 0.03,
+                    ),
                     forgotPasswordPart(),
                     SizedBox(
                       height: Get.height * 0.03,
                     ),
                     signUpButtonPart(),
                     SizedBox(
-                      height: Get.height * 0.07,
+                      height: Get.height * 0.05,
                     ),
-                    Text('Or Sign In Using'),
+                    Text('Ya da'),
                     SizedBox(
                       height: Get.height * 0.03,
                     ),
@@ -80,21 +86,35 @@ class _SignUpState extends State<SignUp> {
                       ],
                     ),
                     SizedBox(
-                      height: Get.height * 0.135,
+                      height: Get.height * 0.17,
                     ),
-                    Text('Or Sign In Using'),
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "Hesabınız Var Mı?",
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ' Giriş Yap!',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.off(()=> LoginPage(),opaque: false);
+                              },
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       height: Get.height * 0.02,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Get.off(()=>LoginPage(),opaque: false);
-                      },
-                      child: Text(
-                        'SIGN IN',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
                     ),
                   ],
                 ),
@@ -115,18 +135,12 @@ class _SignUpState extends State<SignUp> {
         height: Get.height * 0.05,
         width: Get.width,
         alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          gradient: LinearGradient(
-            colors: <Color>[
-              Color(0xFF6dcbdf),
-              Color(0xFFa982eb),
-              Color(0xFFade46f4),
-            ],
-          ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: kirmizi,
         ),
         child: Text(
-          'SIGN UP',
+          'ÜYE OL',
           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
         ),
       ),
@@ -135,10 +149,10 @@ class _SignUpState extends State<SignUp> {
 
   Container forgotPasswordPart() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 7),
       alignment: Alignment.centerRight,
       child: Text(
-        'Forgot Password?',
+        'Şifremi Unuttum?',
         style: TextStyle(fontSize: 12),
       ),
     );
@@ -150,19 +164,40 @@ class _SignUpState extends State<SignUp> {
       children: [
         SizedBox(height: Get.size.height * 0.04),
         Text(
-          'Password',
+          'Şifre',
           style: loginStyle,
         ),
         MyTextForm(
-          hintText: 'Type your password',
-          onSaved: (kullanicininGirdigiDeger) {
-            password = kullanicininGirdigiDeger;
+          hintText: 'Şifre',
+          onSaved: (value) {
+            password = value;
           },
           icon: Icons.lock,
         ),
       ],
     );
   }
+
+  Column passwordPartAgain() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: Get.size.height * 0.04),
+        Text(
+          'Şifre Tekrar',
+          style: loginStyle,
+        ),
+        MyTextForm(
+          hintText: 'Şifre Tekrar',
+          onSaved: (value) {
+            password = value;
+          },
+          icon: Icons.lock,
+        ),
+      ],
+    );
+  }
+
 
   userNamePart() {
     return Column(
@@ -172,13 +207,13 @@ class _SignUpState extends State<SignUp> {
           height: Get.height * 0.04,
         ),
         Text(
-          'Username',
+          'Kullanıcı Adı',
           style: loginStyle,
         ),
         MyTextForm(
-          hintText: 'Type your username',
-          onSaved: (kullanicininGirdigiDeger) {
-            email = kullanicininGirdigiDeger;
+          hintText: 'Kullanıcı Adı',
+          onSaved: (value) {
+            email = value;
           },
           icon: FontAwesomeIcons.user,
         ),
@@ -198,9 +233,9 @@ class _SignUpState extends State<SignUp> {
           style: loginStyle,
         ),
         MyTextForm(
-          hintText: 'Type your email',
-          onSaved: (kullanicininGirdigiDeger) {
-            email = kullanicininGirdigiDeger;
+          hintText: 'Email',
+          onSaved: (value) {
+            email = value;
           },
           icon: FontAwesomeIcons.envelope,
         ),
