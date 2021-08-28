@@ -13,6 +13,7 @@ class _PhotosState extends State<Photos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         title: Text('Fotoğraflar',style: TextStyle(color: Colors.black),),
@@ -23,13 +24,19 @@ class _PhotosState extends State<Photos> {
       body: ListView.builder(
         shrinkWrap: true,
         padding: EdgeInsets.all(8),
-        itemBuilder: (context, index) => Container(
-          margin: EdgeInsets.only(bottom: Get.height*0.04),
-          child: CachedNetworkImage(
-            width: Get.width,
-            imageUrl:
-                'https://thumbor.forbes.com/thumbor/trim/0x112:960x954/fit-in/711x623/smart/https://specials-images.forbesimg.com/imageserve/5e6e26d9aa5428000759e96c/women-washing-purple-water-lilies-in-Vietnam/0x0.jpg',
-          ),
+        itemBuilder: (context, index) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Sümeyye Aydoğan',style: TextStyle(fontWeight: FontWeight.bold),),
+            Container(
+              margin: EdgeInsets.only(bottom: Get.height*0.04,top: Get.height*0.02),
+              child: CachedNetworkImage(
+                width: Get.width,
+                imageUrl:
+                    'https://thumbor.forbes.com/thumbor/trim/0x112:960x954/fit-in/711x623/smart/https://specials-images.forbesimg.com/imageserve/5e6e26d9aa5428000759e96c/women-washing-purple-water-lilies-in-Vietnam/0x0.jpg',
+              ),
+            ),
+          ],
         ),
       ),
     );

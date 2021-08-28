@@ -32,7 +32,7 @@ class _AddEventState extends State<AddEvent> {
             appBar: AppBar(
               title: Text(
                 'Etkinlik Ekle',
-                style: TextStyle(color: textColor),
+                style: TextStyle(color: Color(0xff1e3d59)),
               ),
               actions: [
                 Padding(
@@ -92,8 +92,8 @@ class _AddEventState extends State<AddEvent> {
                             offset: Offset(0, 0),
                             color: Colors.grey.shade300,
                             spreadRadius: 1,
-                            blurRadius: 7)
-                      ]),
+                            blurRadius: 7,)
+                      ],),
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -101,7 +101,7 @@ class _AddEventState extends State<AddEvent> {
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                              color: textColor),
+                              color:Color(0xff1e3d59),),
                         ),
                       ),
                     ),

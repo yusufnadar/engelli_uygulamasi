@@ -2,6 +2,7 @@ import 'package:engelli_uygulama/config/color.dart';
 import 'package:engelli_uygulama/ui/events/comment_to_event.dart';
 import 'package:engelli_uygulama/ui/events/edit_event.dart';
 import 'package:engelli_uygulama/ui/events/event_comments.dart';
+import 'package:engelli_uygulama/ui/events/event_detail.dart';
 import 'package:engelli_uygulama/ui/profile/photos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -123,52 +124,26 @@ class _UserEventsState extends State<UserEvents> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => EventComments());
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: Get.height * 0.02),
-                          height: Get.height * 0.05,
-                          width: Get.width * 0.3,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            color: kirmizi,
-                          ),
-                          child: Text(
-                            'Yorumlar',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => EventDetail(index: 1,));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: Get.height * 0.02),
+                      height: Get.height * 0.05,
+                      width: Get.width * 0.3,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: kirmizi,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => Photos());
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: Get.height * 0.03),
-                          height: Get.height * 0.05,
-                          width: Get.width * 0.3,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            color: kirmizi,
-                          ),
-                          child: Text(
-                            'Fotoğraflar',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                      child: Text(
+                        'Detaylar',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),

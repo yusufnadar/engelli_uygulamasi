@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:engelli_uygulama/config/color.dart';
+import 'package:engelli_uygulama/config/widgets/text_form_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -28,15 +30,17 @@ class _EventDetailState extends State<EventDetail> {
                   child: Image.asset(
                     'assets/a1.jpg',
                     width: Get.width,
-                    height: Get.height*0.3,
+                    height: Get.height * 0.3,
                     fit: BoxFit.cover,
                   ),
                 ),
                 Positioned(
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios,),
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                    ),
                     color: Colors.white,
-                    onPressed: (){
+                    onPressed: () {
                       Get.back();
                     },
                   ),
@@ -52,8 +56,7 @@ class _EventDetailState extends State<EventDetail> {
                 children: [
                   Text(
                     'Festival of the Arts 2020',
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   Container(
                     margin: EdgeInsets.only(
@@ -61,14 +64,12 @@ class _EventDetailState extends State<EventDetail> {
                     child: Text(
                       '27 ŞUB, 2020',
                       style: TextStyle(
-                          color: textColor,
-                          fontWeight: FontWeight.bold),
+                          color: textColor, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
                     'ORTAHİSAR, TRABZON',
-                    style:
-                        TextStyle(color: grimsi, fontSize: 12),
+                    style: TextStyle(color: grimsi, fontSize: 12),
                   ),
                   SizedBox(
                     height: Get.height * 0.02,
@@ -82,8 +83,7 @@ class _EventDetailState extends State<EventDetail> {
                   ),
                   Text(
                     'Katılanlar',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Container(
                     width: Get.width,
@@ -93,14 +93,20 @@ class _EventDetailState extends State<EventDetail> {
                       children: [
                         Row(
                           children: [
-                            FaIcon(FontAwesomeIcons.check,color:turkuaz ,),
-                            SizedBox(width: 10,),
+                            FaIcon(
+                              FontAwesomeIcons.check,
+                              color: turkuaz,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Text('7/7 katılanlar'),
                           ],
                         ),
                         Row(
                           children: [
                             ListView.builder(
+
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemCount: 3,
@@ -117,7 +123,13 @@ class _EventDetailState extends State<EventDetail> {
                             CircleAvatar(
                               radius: 20,
                               backgroundColor: acikMavi,
-                              child: Container(margin: EdgeInsets.only(bottom: 5),child: Text('+3',style: TextStyle(color: Colors.white),),),
+                              child: Container(
+                                margin: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  '+3',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -130,18 +142,68 @@ class _EventDetailState extends State<EventDetail> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Etkinlik Sorumlusu',style: TextStyle(fontWeight: FontWeight.bold),),
+                          Text(
+                            'Etkinlik Sorumlusu',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           Text('Berk Gizem')
                         ],
                       ),
                       Container(
                         alignment: Alignment.center,
-                        width: Get.width*0.25,
-                        padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                        decoration: BoxDecoration(color: kirmizi,borderRadius: BorderRadius.circular(15)),
-                        child: Text('Katıl',style: TextStyle(color: Colors.white,fontSize: 18),),
+                        width: Get.width * 0.25,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        decoration: BoxDecoration(
+                            color: kirmizi,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text(
+                          'Katıl',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
                       ),
                     ],
+                  ),
+                  Container(height: 16,),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    margin: EdgeInsets.only(bottom: 15),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: 'Yorum Yazınız',
+                          hintStyle: TextStyle(color: Colors.black,fontSize: 13),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: ElevatedButton(onPressed: (){}, child: Text('Paylaş'),style: ElevatedButton.styleFrom(primary: kirmizi),),
+                    ),
+                  ),
+                  ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Container(
+                      margin: EdgeInsets.only(bottom: 10,top: 10),
+                      child: Card(
+                        child: Container(
+                          padding: EdgeInsets.all(15.0),
+                          margin: EdgeInsets.only(bottom: Get.height*0.02),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Ahmet Utlu',style: TextStyle(fontWeight: FontWeight.bold),),
+                              SizedBox(height: 10,),
+                              Text('Ben kesin geliyorum'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

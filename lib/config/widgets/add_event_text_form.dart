@@ -11,7 +11,7 @@ class AddEventTextForm extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         hintText: text,
-        hintStyle: TextStyle(fontSize: 13, color: textColor),
+        hintStyle: TextStyle(fontSize: 13, color: Color(0xff1e3d59)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(6),
           borderSide: BorderSide(

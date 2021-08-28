@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:engelli_uygulama/config/color.dart';
 import 'package:engelli_uygulama/config/widgets/profile_text_field.dart';
 import 'package:engelli_uygulama/config/widgets/text_form_field.dart';
@@ -44,7 +45,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: kirmizi,
         title: Text('Profili Düzenle'),
       ),
       body: SingleChildScrollView(
@@ -57,13 +58,13 @@ class _EditProfileState extends State<EditProfile> {
               child: Stack(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/profil.jfif'),
+                    backgroundImage:  CachedNetworkImageProvider('https://images.unsplash.com/photo-1608415295464-b5de23d21f59?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'),
                     radius: Get.height * 0.1,
                   ),
                   Positioned(
-                    child: Image.asset(
-                      'assets/photo-camera.png',
-                      width: 40,
+                    child: CircleAvatar(
+                      child: Icon(Icons.camera_alt_outlined,color: Colors.white,),
+                      backgroundColor: kirmizi,
                     ),
                     bottom: 10,
                     right: 10,

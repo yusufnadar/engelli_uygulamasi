@@ -6,8 +6,9 @@ class ProfileBoxes extends StatelessWidget {
   final title;
   final count;
   final photos;
+  final color;
 
-  ProfileBoxes({Key key, this.title,this.count,this.photos});
+  ProfileBoxes({Key key, this.title,this.count,this.photos, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class ProfileBoxes extends StatelessWidget {
         boxShadow: [
           BoxShadow(offset: Offset(0,0),color: Colors.grey.shade300,blurRadius: 10,spreadRadius: 1)
         ],
-          color: Colors.grey.shade300, borderRadius: BorderRadius.circular(4)),
+          color:color, borderRadius: BorderRadius.circular(4)),
       padding: EdgeInsets.symmetric(
            vertical: Get.height * 0.018),
       child: ListTile(

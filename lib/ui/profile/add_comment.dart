@@ -13,9 +13,10 @@ class _AddCommentState extends State<AddComment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: lacivert,
-        title: Text('Yorum Ekle'),
+        title: Text('Yorum Ekle',style: TextStyle(color: Colors.black),),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Container(
         padding: EdgeInsets.all(12),
@@ -43,9 +44,9 @@ class _AddCommentState extends State<AddComment> {
               width: Get.width,
               height: Get.height * 0.06,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: sari),
+                style: ElevatedButton.styleFrom(primary: kirmizi),
                 onPressed: () {},
-                child: Text('Yorum Yap',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                child: Text('Yorum Yap',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.white),),
               ),
             )
           ],

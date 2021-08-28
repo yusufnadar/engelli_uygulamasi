@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:engelli_uygulama/config/color.dart';
 import 'package:engelli_uygulama/config/widgets/profile_boxes.dart';
+import 'package:engelli_uygulama/ui/profile/past_events.dart';
 import 'package:engelli_uygulama/ui/profile/photos.dart';
 import 'package:engelli_uygulama/ui/profile/complain.dart';
 import 'package:engelli_uygulama/ui/profile/edit_profile.dart';
@@ -36,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                if (me)
+                if (!me)
                   Positioned(
                     right: Get.width * 0.06,
                     top: Get.height * 0.04,
@@ -71,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                   ),
-                if (!me)
+                if (me)
                   Positioned(
                     left: Get.width * 0.07,
                     top: Get.height * 0.04,
@@ -81,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       size: 30,
                     ),
                   ),
-                if (!me)
+                if (me)
                   Positioned(
                     right: Get.width * 0.07,
                     top: Get.height * 0.04,
@@ -153,19 +154,19 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           GestureDetector(onTap: (){
                             Get.to(()=>Hobies());
-                          },child: ProfileBoxes(title: 'Hobiler', count: '10',photos:'assets/hobiler.png')),
+                          },child: ProfileBoxes(title: 'Hobiler', count: '10',photos:'assets/hobiler.png',color:Colors.orange),),
+                          GestureDetector(onTap: (){
+                            Get.to(()=> PastEvents());
+                          },child: ProfileBoxes(title: 'Geçmiş Etkinlikler', count: '15',photos:'assets/past.png',color:Colors.green),),
                           GestureDetector(onTap: (){
                             Get.to(()=> UserEvents());
-                          },child: ProfileBoxes(title: 'Geçmiş Etkinlikler', count: '15',photos:'assets/past.png')),
-                          GestureDetector(onTap: (){
-                            Get.to(()=> UserEvents());
-                          },child: ProfileBoxes(title: 'Etkinliklerim', count: '15',photos:'assets/etkinliklerim.png')),
+                          },child: ProfileBoxes(title: 'Etkinliklerim', count: '15',photos:'assets/etkinliklerim.png',color:Colors.red),),
                           GestureDetector(onTap: (){
                             Get.to(()=>UserComments());
-                          },child: ProfileBoxes(title: 'Yorumlar', count: '24',photos:'assets/comments.png')),
+                          },child: ProfileBoxes(title: 'Yorumlar', count: '24',photos:'assets/comments.png',color:Colors.yellow),),
                           GestureDetector(onTap: (){
                             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Photos()));
-                          },child: ProfileBoxes(title: 'Fotoğraflar', count: '124',photos:'assets/gallery.png'))
+                          },child: ProfileBoxes(title: 'Fotoğraflar', count: '124',photos:'assets/gallery.png',color:Colors.blue))
                         ],
                       ),
                     ),

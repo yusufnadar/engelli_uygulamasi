@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-enum TabItem { HomePage,AddEvent, MessagePage, ProfilPage }
+enum TabItem { HomePage, AddEvent, MessagePage, ProfilPage }
 
 class Tabs extends StatefulWidget {
   final int currentTab1;
@@ -64,34 +64,32 @@ class _TabsState extends State<Tabs>
       child: CupertinoTabScaffold(
         resizeToAvoidBottomInset: true,
         tabBar: CupertinoTabBar(
+          backgroundColor: Colors.white,
           currentIndex: widget.currentTab1,
           items: [
             BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.home,
-                size: 20,
-                color: currentIndex == 0 ? lacivert : Colors.grey,
+              icon: Image.asset('assets/home.png',
+                  color: currentIndex == 0 ? kirmizi : Colors.grey, width: 24,),
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/add.png',
+                color: currentIndex == 1 ? kirmizi : Colors.grey,
+                width: 25,
               ),
             ),
             BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.ad,
-                size: 20,
-                color: currentIndex == 1 ? lacivert : Colors.grey,
+              icon: Image.asset(
+                'assets/chat.png',
+                color: currentIndex == 2 ? kirmizi : Colors.grey,
+                width: 25,
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.messenger,
-                size: 20,
-                color: currentIndex == 2 ? lacivert : Colors.grey,
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.solidUser,
-                size: 20,
-                color: currentIndex == 3 ? lacivert : Colors.grey,
+              icon: Image.asset(
+                'assets/user.png',
+                color: currentIndex == 3 ? kirmizi : Colors.grey,
+                width: 25,
               ),
             ),
           ],

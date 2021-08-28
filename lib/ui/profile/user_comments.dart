@@ -1,6 +1,9 @@
-import 'package:engelli_uygulama/ui/edit_comment.dart';
+import 'package:engelli_uygulama/config/color.dart';
+import 'package:engelli_uygulama/ui/events/comment_to_event.dart';
+import 'package:engelli_uygulama/ui/profile/add_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:math' as math;
 
 class UserComments extends StatefulWidget {
   const UserComments({Key key}) : super(key: key);
@@ -15,6 +18,9 @@ class _UserCommentsState extends State<UserComments> {
     'Bence biraz fazla egolu ama yine de çok cömert ve insanlara yardım ediyor, 4 yıldızı hakediyor'
   ];
 
+  var colorList = <Color>[Colors.red,Colors.blue,Colors.yellow,Colors.green,Colors.orange];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +29,16 @@ class _UserCommentsState extends State<UserComments> {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => AddComment());
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
         title: Text(
-          'Yorumlar',
+          'Kullanıcı Yorumları',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -35,41 +49,11 @@ class _UserCommentsState extends State<UserComments> {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 12),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(flex: 6,child: Text(liste[index])),
-                      Expanded(
-                        flex: 1,
-                        child: PopupMenuButton(
-                          onSelected: (value) {
-                            switch (value) {
-                              case '1':
-                                Get.to(()=> EditComment());
-                                break;
-                              case '2':
-
-                                break;
-                            }
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return [
-                              PopupMenuItem(
-                                child: Text('Düzenle'),
-                                value: '1',
-                              ),
-                              PopupMenuItem(
-                                child: Text('Sil'),
-                                value: '2',
-                              ),
-                            ];
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-
+                  Text('Sümeyye Aydoğan',style: TextStyle(fontWeight: FontWeight.bold,color: colorList[math.Random().nextInt(5)]),),
+                  SizedBox(height: 15,),
+                  Text(liste[index]),
                 ],
               ),
             ),
